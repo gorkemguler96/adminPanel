@@ -9,9 +9,6 @@ import Tables from "../../components/table/Tables";
 
 
 function Home({ type }) {
-
-
-
     return (
         <div className={"home"}>
             <Sidebar/>

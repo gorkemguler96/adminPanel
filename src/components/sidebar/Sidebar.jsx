@@ -1,4 +1,3 @@
-import React from 'react';
 import './sidebar.scss'
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
@@ -12,11 +11,21 @@ import PsychologyOutlinedIcon from '@mui/icons-material/PsychologyOutlined';
 import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
+import {Link} from 'react-router-dom'
+import {useContext} from "react";
+import {DarkModeContext} from "../../context/darkModeContext";
 
 function Sidebar(props) {
+
+    const {dispatch} = useContext(DarkModeContext);
+
     return (
         <div className={"sidebar"}>
-            <div className="top"><span className="logo">admin</span></div>
+            <div className="top"><span className="logo">
+                <Link to={"/"} style={{textDecoration:"none"}}>
+                    <span className="logo">admin</span>
+                </Link>
+            </span></div>
             <hr/>
             <div className="center">
                 <ul>
@@ -27,14 +36,18 @@ function Sidebar(props) {
                     </li>
 
                     <p className="title">LISTS</p>
-                    <li>
-                        <PersonOutlineIcon className={"icon"}/>
-                        <span>Users</span>
-                    </li>
-                    <li>
-                        <Inventory2Icon className={"icon"}/>
-                        <span>Products</span>
-                    </li>
+                    <Link to={"/users"} style={{textDecoration:"none"}}>
+                        <li>
+                            <PersonOutlineIcon className={"icon"}/>
+                            <span>Users</span>
+                        </li>
+                    </Link>
+                    <Link to={"/products"} style={{textDecoration:"none"}}>
+                        <li>
+                            <Inventory2Icon className={"icon"}/>
+                            <span>Products</span>
+                        </li>
+                    </Link>
                     <li>
                         <CreditCardIcon className={"icon"}/>
                         <span>Orders</span>
@@ -80,8 +93,8 @@ function Sidebar(props) {
                 </ul>
             </div>
             <div className="bottom">
-                <div className="colorOption"></div>
-                <div className="colorOption"></div>
+                <div onClick={()=>dispatch({type:"LIGHT"})} className="colorOption"></div>
+                <div onClick={()=>dispatch({type:"DARK"})} className="colorOption"></div>
             </div>
         </div>
     );

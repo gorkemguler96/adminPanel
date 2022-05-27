@@ -11,6 +11,7 @@ function List(props) {
             <div className="listContainer">
                 <Navbar/>
                 <Datatable/>
+
             </div>
         </div>
     );
